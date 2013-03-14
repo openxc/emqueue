@@ -3,6 +3,8 @@ CFLAGS = -I. -c -w -Wall -Werror -g -ggdb
 LDFLAGS = -lm
 LDLIBS = -lcheck
 
+TEST_DIR = tests
+
 # Guard against \r\n line endings only in Cygwin
 OSTYPE := $(shell uname)
 ifneq ($(OSTYPE),Darwin)
@@ -14,12 +16,12 @@ endif
 
 OBJS = $(wildcard *.c)
 
-test: tests.bin
+test: $(TEST_DIR)/tests.bin
 	@set -o $(TEST_SET_OPTS) >/dev/null 2>&1
 	@export SHELLOPTS
-	@sh runtests.sh .
+	@sh runtests.sh $(TEST_DIR)
 
-tests.bin: tests.o emqueue.o
+$(TEST_DIR)/tests.bin: $(TEST_DIR)/tests.o emqueue.o
 	@mkdir -p $(dir $@)
 	$(CC) $(LDFLAGS) $(CC_SYMBOLS) $(C_FLAGS) $(INCLUDE_PATHS) -o $@ $^ $(LDLIBS)
 
