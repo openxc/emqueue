@@ -1,0 +1,22 @@
+Generic C Queue for Embedded Systems
+====================================
+
+This library is an implementation of a queue in C that can support arbirtary
+element types.
+
+The queue functions are defined using macros in order to support this. It's not
+the prettiest thing in the world, but it works well when you need it.
+
+## Projects using Emqueue
+
+* [OpenXC Vehicle Interface](https://github.com/openxc/cantranslator)
+* [Arduadio RTTY Radio](https://github.com/peplin/arduadio)
+
+## License
+
+This library is licensed under the BSD license and is Copyright 2013,
+Ford Motor Company
+
+## Contributors
+
+* Chris Peplin, cpeplin@ford.com
