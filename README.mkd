@@ -9,7 +9,7 @@ the prettiest thing in the world, but it works well when you need it.
 
 ## Projects using Emqueue
 
-* [OpenXC Vehicle Interface](https://github.com/openxc/cantranslator)
+* [OpenXC Vehicle Interface](https://github.com/openxc/vi-firmware)
 * [Arduadio RTTY Radio](https://github.com/peplin/arduadio)
 
 ## License
