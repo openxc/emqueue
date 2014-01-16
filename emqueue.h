@@ -30,7 +30,7 @@ int queue_##type##_length(queue_##type* queue); \
 int queue_##type##_available(queue_##type* queue); \
 bool queue_##type##_full(queue_##type* queue); \
 bool queue_##type##_empty(queue_##type* queue); \
-void queue_##type##_snapshot(queue_##type* queue, type* snapshot);
+void queue_##type##_snapshot(queue_##type* queue, type* snapshot, int max);
 
 #define QUEUE_DEFINE(type) \
 bool queue_##type##_push(queue_##type* queue, type value) { \
@@ -78,9 +78,9 @@ bool queue_##type##_empty(queue_##type* queue) { \
     return queue_##type##_length(queue) == 0; \
 } \
 \
-void queue_##type##_snapshot(queue_##type* queue, type* snapshot) { \
+void queue_##type##_snapshot(queue_##type* queue, type* snapshot, int max_length) { \
     int i; \
-    for(i = 0; i < queue_##type##_length(queue); i++) { \
+    for(i = 0; i < queue_##type##_length(queue) && i < max_length; i++) { \
         snapshot[i] = queue->elements[ \
             (queue->tail + i) % queue_##type##_max_internal_length]; \
     } \
@@ -95,8 +95,8 @@ void queue_##type##_snapshot(queue_##type* queue, type* snapshot) { \
 #define QUEUE_AVAILABLE(type, queue) queue_##type##_available(queue)
 #define QUEUE_FULL(type, queue) queue_##type##_full(queue)
 #define QUEUE_EMPTY(type, queue) queue_##type##_empty(queue)
-#define QUEUE_SNAPSHOT(type, queue, snapshot) queue_##type##_snapshot(queue, \
-        snapshot)
+#define QUEUE_SNAPSHOT(type, queue, snapshot, max_length) queue_##type##_snapshot(queue, \
+        snapshot, max_length)
 
 #ifdef __cplusplus
 }
